@@ -1,0 +1,20 @@
+
+user:{
+    id,
+    email,
+    pass,
+    name,
+    lastName,
+    phone,
+    image,
+    rolId,
+}
+
+rol : {
+    id,
+    name,
+    permissions:{
+        userModule: 0 | 1 | 2 
+        rolesModule: 0 | 1 | 2
+    },
+}
