@@ -8,10 +8,17 @@ export default {
   },
   mutations: {
 
-    SET_ROLE: (state, payload) => {
-      const id = state.roles.reduce((acc, el) => el.id > acc ? el.id : acc, 0) + 1
-      state.roles.push({ id, ...payload })
+    ADD_ROLE: (state, payload) => {
+      const roles = [...state.roles]
+      const id = roles.reduce((acc, el) => el.id > acc ? el.id : acc, 0) + 1
+      roles.push({ id, ...payload })
+      state.roles = roles
     },
+
+    SET_ROLES: (state, payload) => {
+      state.roles = payload
+    },
+
     MODIFY_ROLE: (state, payload) => {
       const roles = [...state.roles]
       const result = roles.findIndex(el => el.id === payload.id)
@@ -20,6 +27,7 @@ export default {
         state.roles = roles
       }
     },
+
     DELETE_ROLE: (state, payload) => {
       const roles = [...state.roles]
       const result = roles.findIndex(el => el.id === payload.id)
@@ -31,8 +39,8 @@ export default {
   },
   actions: {
 
-    async setRole (context, payload) {
-      context.commit('SET_ROLE', payload)
+    async addRole (context, payload) {
+      context.commit('ADD_ROLE', payload)
     },
     async modifyRole (context, payload) {
       context.commit('MODIFY_ROLE', payload)
