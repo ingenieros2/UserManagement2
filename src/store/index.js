@@ -19,9 +19,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async setIsLogged (context, payload) {
+    async setLogIn (context, payload) {
       context.commit('SET_LOGGED_USER', payload)
+      //  validacion de cuando se loguea bien o mal
+
+      //  devolver un objeto {message:'', error/success:boolean}
+    },
+    async setLogOut (context) {
+      context.commit('SET_LOGGED_USER', null)
+      context.commit('users/SET_USERS', [])
+      context.commit('roles/SET_ROLES', [])
     }
+
   },
   modules: {
     users,
@@ -29,4 +38,3 @@ export default new Vuex.Store({
 
   }
 })
-//

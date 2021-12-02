@@ -2,21 +2,20 @@ export default {
   namespaced: true,
 
   state: {
-    users: []
+    users: [{ name: 'Gola' }]
   },
   getter: {
     getUser: (state) => state.users
 
   },
   mutations: {
-    SET_USER: (state, payload) => {
-      const id = state.users.reduce((acc, el) => el.id > acc ? el.id : acc, 0) + 1
-      state.users.push({ id, ...payload })
+    ADD_USER: (state, payload) => {
+      const users = [...state.users]
+      const id = users.reduce((acc, el) => el.id > acc ? el.id : acc, 0) + 1
+      users.push({ id, ...payload })
+      state.users = users
     },
 
-    SET_LOGGED_USER: (state, payload) => {
-      state.loggedUser = payload
-    },
     MODIFY_USER: (state, payload) => {
       const users = [...state.users]
       const result = users.findIndex(el => el.id === payload.id)
@@ -33,18 +32,22 @@ export default {
         users.splice(result, 1)
         state.users = users
       }
+    },
+
+    SET_USERS: (state, payload) => {
+      state.users = payload
     }
 
   },
   actions: {
-    async setUser (context, payload) {
-      context.commit('SET_USER', payload)
+    async addUser ({ commit, rootState }, payload) {
+      commit('ADD_USER', payload)
     },
-    async modifyUser (context, payload) {
-      context.commit('MODIFY_USER', payload)
+    async modifyUser ({ commit, rootState }, payload) {
+      commit('MODIFY_USER', payload)
     },
-    async deleteUser (context, payload) {
-      context.commit('DELETE_USER', payload)
+    async deleteUser ({ commit, rootState }, payload) {
+      commit('DELETE_USER', payload)
     }
   }
 
