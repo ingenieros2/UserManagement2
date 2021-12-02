@@ -39,14 +39,14 @@ export default {
   },
   actions: {
 
-    async addRole (context, payload) {
-      context.commit('ADD_ROLE', payload)
+    async addRole ({ commit }, payload) {
+      commit('ADD_ROLE', payload)
     },
-    async modifyRole (context, payload) {
-      context.commit('MODIFY_ROLE', payload)
+    async modifyRole ({ commit, rootState }, payload) {
+      commit('MODIFY_ROLE', payload)
     },
-    async deleteRole (context, payload) {
-      context.commit('DELETE_ROLE', payload)
+    async deleteRole ({ commit, rootState }, payload) {
+      commit('DELETE_ROLE', payload)
     }
   }
 

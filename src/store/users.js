@@ -2,7 +2,7 @@ export default {
   namespaced: true,
 
   state: {
-    users: []
+    users: [{ name: 'Gola' }]
   },
   getter: {
     getUser: (state) => state.users
@@ -40,14 +40,14 @@ export default {
 
   },
   actions: {
-    async addUser (context, payload) {
-      context.commit('ADD_USER', payload)
+    async addUser ({ commit, rootState }, payload) {
+      commit('ADD_USER', payload)
     },
-    async modifyUser (context, payload) {
-      context.commit('MODIFY_USER', payload)
+    async modifyUser ({ commit, rootState }, payload) {
+      commit('MODIFY_USER', payload)
     },
-    async deleteUser (context, payload) {
-      context.commit('DELETE_USER', payload)
+    async deleteUser ({ commit, rootState }, payload) {
+      commit('DELETE_USER', payload)
     }
   }
 
