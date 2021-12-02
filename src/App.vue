@@ -1,30 +1,59 @@
 <template>
-  <div id="app">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <div id="nav">
-
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" fluid>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <b-container fluid>
+      <b-row>
+        <b-col class="bg-danger" sm="3">
+          <b-nav id="nav" vertical>
+            <div class="pt-sm-10">
+              <b-avatar
+                class="pt-10"
+                src="https://placekitten.com/300/300"
+                size="6rem"
+              ></b-avatar>
+            </div>
+            <router-link to="/">Profile</router-link>
+            <router-link to="/about">Users</router-link>
+            <router-link to="/about">Roles</router-link>
+            <router-link to="/about">Log out</router-link>
+          </b-nav>
+        </b-col>
+        <b-col sm="8">
+          <router-view />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
+<script>
+// @ is an alias to /src
+
+export default {
+  name: 'app',
+  components: {}
+}
+</script>
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #e0e0e0;
 }
 
 #nav {
   padding: 30px;
 }
-
+.classNavbar {
+  height: 1020px;
+  background: #42b983;
+}
 #nav a {
   font-weight: bold;
   color: #2c3e50;

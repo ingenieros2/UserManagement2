@@ -1,21 +1,17 @@
 <template>
   <div class="home">
-    <h1>holu</h1>
-    <span class="material-icons">
-favorite
-</span>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ProfileComponent></ProfileComponent>
   </div>
 </template>
 
 <script>
+import ProfileComponent from '../components/ProfileComponent'
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    ProfileComponent
   }
 }
 </script>
