@@ -3,7 +3,7 @@ export default {
   state: {
     roles: []
   },
-  getter: {
+  getters: {
     getRoles: (state) => state.Roles
   },
   mutations: {

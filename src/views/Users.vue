@@ -9,7 +9,6 @@
         <b-button v-b-modal.modal-2 @click="modalNewUser">New user</b-button>
       </b-col>
     </b-row>
-
     <b-row>
       <b-col sm="3" class="filter-wrapper">
         <b-row class="title-wrapper">
@@ -82,6 +81,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Users',
   props: { },
@@ -100,6 +100,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      getUser: 'users/getUser'
+    }),
     modalTitle () {
       return this.editing ? 'Editing' : 'New User'
     }

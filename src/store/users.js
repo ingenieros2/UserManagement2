@@ -2,10 +2,10 @@ export default {
   namespaced: true,
 
   state: {
-    users: [{ name: 'Gola' }]
+    users: []
   },
-  getter: {
-    getUser: (state) => state.users
+  getters: {
+    getUsers: (state) => state.users
 
   },
   mutations: {
