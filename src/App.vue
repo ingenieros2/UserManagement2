@@ -6,7 +6,7 @@
     />
     <b-container fluid>
       <b-row>
-        <b-col class="bg-danger" sm="3">
+        <b-col class="bg-white pt-5" sm="3">
           <b-nav id="nav" vertical>
             <div class="pt-sm-10">
               <b-avatar
@@ -14,15 +14,18 @@
                 src="https://placekitten.com/300/300"
                 size="6rem"
               ></b-avatar>
+              <h5 class="pt-2">
+                Marcos Cuchian
+              </h5>
             </div>
-            <router-link to="/">Profile</router-link>
-            <router-link to="/about">Users</router-link>
-            <router-link to="/about">Roles</router-link>
-            <router-link to="/about">Log out</router-link>
+            <router-link to="/profile" class="pt-3">Profile</router-link>
+            <router-link to="/users" class="pt-3">Users</router-link>
+            <router-link to="/roles" class="pt-3">Roles</router-link>
+            <router-link to="/" class="pt-5">Log Out</router-link>
           </b-nav>
         </b-col>
         <b-col sm="8">
-          <router-view />
+          <router-view class="pt-5"/>
         </b-col>
       </b-row>
     </b-container>
@@ -48,7 +51,7 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  height: 100vh;
 }
 .classNavbar {
   height: 1020px;
@@ -60,6 +63,6 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #d30000;
 }
 </style>

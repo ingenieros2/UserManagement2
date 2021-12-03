@@ -1,10 +1,10 @@
 <template>
   <b-container class="" fluid>
-    <b-row>
-      <b-col cols="9">
+    <b-row class="">
+      <b-col cols="12">
         <h1>Profile</h1>
         <b-row class="bg">
-          <b-col cols="4">
+          <b-col cols="6">
             <div class="mb-2">
               <b-avatar
                 rounded="lg"
@@ -13,35 +13,35 @@
               ></b-avatar>
             </div>
           </b-col>
-          <b-col cols="4">
+          <b-col cols="6">
             <label for="">Image</label>
             <b-form-file placeholder="Ingrese su imagen aca"></b-form-file>
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="4">
+          <b-col cols="6">
             <label for="">Name</label>
             <input class="form-control" type="text" />
           </b-col>
-          <b-col cols="4">
+          <b-col cols="6">
             <label for="">Last Name </label>
             <input class="form-control" type="text" />
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="4">
+          <b-col cols="6">
             <label for="">Email</label>
             <b-input-group prepend="@" class="mb-2 mr-sm-2 mb-sm-0">
               <b-form-input id="" placeholder="Username"></b-form-input>
             </b-input-group>
           </b-col>
-          <b-col cols="4">
+          <b-col cols="6">
             <label for="">Phone </label>
             <input class="form-control" type="text" />
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="4">
+          <b-col cols="6">
             <label for="">Role</label>
             <select
               class="form-control"
