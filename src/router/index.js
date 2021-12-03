@@ -9,12 +9,12 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Roles
+    component: Users
   },
   {
     path: '/users',
     name: 'Home',
-    component: Users
+    component: Roles
   }
 ]
 
