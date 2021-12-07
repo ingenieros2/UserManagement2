@@ -16,24 +16,24 @@
         </b-row>
         <b-row class="name-wrapper">
           <label for="name">Name</label>
-          <b-input></b-input>
+          <b-input v-model="nameFilter"></b-input>
         </b-row>
         <b-row class="email-wrapper">
           <label for="email">Email</label>
-          <b-input></b-input>
+          <b-input v-model="emailFilter"></b-input>
         </b-row>
         <b-row class="role-wrapper">
           <label for="role">Role</label>
-          <b-select></b-select>
+          <b-select :options="rolesList"></b-select>
         </b-row>
       </b-col>
       <b-col sm="9">
-        <b-table striped hover :items="items" :fields="fields">
+        <b-table striped hover :items="usersList" :fields="fields">
           <template #cell(Acciones)="data">
             <b-row>
               <b-col cols="4"></b-col>
               <b-col cols="2">
-                <a v-b-modal.modal-2 @click="modalEditing">
+                <a v-b-modal.modal-2 @click="getItem(data.item)">
                   <span class="material-icons">edit</span>
                 </a>
               </b-col>
@@ -56,7 +56,7 @@
             <label for="emailNewUser">Email:</label>
             <b-input v-model="email"></b-input>
             <label for="roleNewUser">Role:</label>
-            <b-select v-model="role"></b-select>
+            <b-select v-model="roleId" :options="rolesList"></b-select>
           </b-col>
           <b-col sm="6">
             <label for="lastNameNewUser">Last Name:</label>
@@ -81,50 +81,97 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Users',
   props: { },
   components: {},
   data () {
     return {
-      items: [{ Id: 1, Name: 'Nacho', LastName: 'Heinzmann', Email: 'ignacio.heinzmann@gmail.com', Phone: '3516273746', RoleId: 1 }],
-      fields: ['Id', 'Name', 'LastName', 'Email', 'Phone', 'RoleId', 'Acciones'],
+      fields: ['id', 'name', 'lastName', 'email', 'phone', 'roleName', 'Acciones'],
       name: '',
       lastName: '',
       email: '',
       phone: '',
-      roleId: 0,
+      roleId: '',
       image: '',
-      editing: false
+      editing: false,
+      id: ''
     }
   },
   computed: {
     ...mapGetters({
-      getUser: 'users/getUser'
+      getUsers: 'users/getUsers',
+      getRoles: 'roles/getRoles'
     }),
     modalTitle () {
       return this.editing ? 'Editing' : 'New User'
+    },
+    usersList () {
+      const list = []
+      this.getUsers.forEach(usuario => {
+        const role = this.getRoles.find((role) => role.id === usuario.roleId)
+        usuario.roleName = role.name
+        list.push(usuario)
+      })
+      return list
+    },
+    rolesList () {
+      const options = []
+      this.getRoles.forEach(role => {
+        options.push({ value: role.id, text: role.name })
+      })
+      return options
     }
   },
   methods: {
+    ...mapActions({
+      addUser: 'users/addUser',
+      modifyUser: 'users/modifyUser',
+      deleteUser: 'users/deleteUser',
+      addRole: 'roles/addRole'
+    }),
     modify () {
-      alert('Modifica')
+      const newUser = {
+        name: this.name,
+        lastName: this.lastName,
+        email: this.email,
+        phone: this.phone,
+        roleId: this.roleId,
+        image: this.image,
+        id: this.id
+      }
+      this.checkEmptyFields() ? this.modifyUser(newUser) : alert('Hay cositas sin completar')
       this.editing = false
     },
     cancelEditing () {
       this.editing = false
     },
-    modalEditing () {
+    getItem (data) {
       this.editing = true
       this.reset()
+      this.name = data.name
+      this.phone = data.phone
+      this.email = data.email
+      this.roleId = data.roleId
+      this.image = data.image
+      this.lastName = data.lastName
+      this.id = data.id
     },
     modalNewUser () {
       this.editing = false
       this.reset()
     },
     newUser () {
-      alert('New User')
+      const newUser = {
+        name: this.name,
+        lastName: this.lastName,
+        email: this.email,
+        phone: this.phone,
+        roleId: this.roleId,
+        image: this.image
+      }
+      this.checkEmptyFields() ? this.addUser(newUser) : alert('Hay cositas sin completar')
     },
     reset () {
       this.name = ''
@@ -133,8 +180,15 @@ export default {
       this.phone = ''
       this.roleId = 0
       this.image = ''
+      this.id = ''
+    },
+    checkEmptyFields () {
+      return this.name !== '' && this.lastName !== '' && this.email !== '' && this.phone !== '' && this.roleId !== '' && this.image !== ''
     }
 
+  },
+  mounted () {
+    this.addRole({ name: 'Admin', user: 1, profile: 1, role: 1 })
   }
 }
 </script>
