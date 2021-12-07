@@ -4,7 +4,7 @@ export default {
     roles: []
   },
   getters: {
-    getRoles: (state) => state.Roles
+    getRoles: (state) => state.roles
   },
   mutations: {
 
