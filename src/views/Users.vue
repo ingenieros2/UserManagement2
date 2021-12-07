@@ -96,7 +96,9 @@ export default {
       roleId: '',
       image: '',
       editing: false,
-      id: ''
+      id: '',
+      nameFilter: '',
+      emailFilter: ''
     }
   },
   computed: {
