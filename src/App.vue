@@ -5,8 +5,8 @@
       rel="stylesheet"
     />
     <b-container fluid>
-      <b-row>
-        <b-col class="bg-white pt-5" sm="3">
+      <b-row >
+        <b-col class="bg-white pt-5" sm="3" fluid>
           <b-nav id="nav" vertical>
             <div class="pt-sm-10">
               <b-avatar
@@ -18,10 +18,22 @@
                 Marcos Cuchian
               </h5>
             </div>
-            <router-link to="/profile" class="pt-3">Profile</router-link>
-            <router-link to="/users" class="pt-3">Users</router-link>
-            <router-link to="/roles" class="pt-3">Roles</router-link>
-            <router-link to="/" class="pt-5">Log Out</router-link>
+            <div class="d-flex  flex-column bd-highlight mb-3 justify-content-between">
+
+            <router-link to="/profile" class="pt-3">
+              <span class="material-icons">person</span>
+            Profile</router-link>
+            <router-link to="/users" class="pt-3">
+              <span class="material-icons">people</span>
+            Users</router-link>
+            <router-link to="/roles" class="pt-3">
+              <span class="material-icons">sell</span>
+            Roles
+            </router-link>
+            <router-link to="/" class="pt-5">Log Out
+              <span class="material-icons">logout</span>
+            </router-link>
+            </div>
           </b-nav>
         </b-col>
         <b-col sm="8">
@@ -63,6 +75,13 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  color: #d30000;
+  color: #000000;
+  background: #ffffff ;
+  font-size: 20px;
+}
+#nav a{
+  padding-top:40px !important;
+  background: #ffffff;
+  font-size: 20px;
 }
 </style>

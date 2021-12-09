@@ -4,7 +4,7 @@ export default {
   state: {
     users: [{ name: 'Gola' }]
   },
-  getter: {
+  getters: {
     getUser: (state) => state.users
 
   },

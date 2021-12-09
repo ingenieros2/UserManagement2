@@ -1,10 +1,14 @@
 export default {
   namespaced: true,
   state: {
-    roles: []
+    roles: [
+      { id: 8, name: 'Nachito', user: 1, profile: 1, role: 1 },
+      { id: 2, name: 'Marcos', user: 1, profile: 0, role: 1 },
+      { id: 3, name: 'Franco', user: 1, profile: 1, role: 1 },
+      { id: 4, name: 'Piter', user: 1, profile: 1, role: 0 }]
   },
-  getter: {
-    getRoles: (state) => state.Roles
+  getters: {
+    getRoles: (state) => state.roles
   },
   mutations: {
 
