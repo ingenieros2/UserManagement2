@@ -28,7 +28,7 @@
         </b-row>
       </b-col>
       <b-col sm="9">
-        <b-table striped hover :items="usersList" :fields="fields">
+        <b-table striped hover :items="userData" :fields="fields">
           <template #cell(Acciones)="data">
             <b-row>
               <b-col cols="4"></b-col>
@@ -104,19 +104,11 @@ export default {
   computed: {
     ...mapGetters({
       getUsers: 'users/getUsers',
-      getRoles: 'roles/getRoles'
+      getRoles: 'roles/getRoles',
+      getFiltered: 'users/getFiltered'
     }),
     modalTitle () {
       return this.editing ? 'Editing' : 'New User'
-    },
-    usersList () {
-      const list = []
-      this.getUsers.forEach(usuario => {
-        const role = this.getRoles.find((role) => role.id === usuario.roleId)
-        usuario.roleName = role.name
-        list.push(usuario)
-      })
-      return list
     },
     rolesList () {
       const options = []
@@ -124,6 +116,13 @@ export default {
         options.push({ value: role.id, text: role.name })
       })
       return options
+    },
+    userData () {
+      if (this.nameFilter !== '' || this.emailFilter !== '') {
+        return this.getFiltered
+      } else {
+        return this.getUsers
+      }
     }
   },
   methods: {
@@ -131,7 +130,8 @@ export default {
       addUser: 'users/addUser',
       modifyUser: 'users/modifyUser',
       deleteUser: 'users/deleteUser',
-      addRole: 'roles/addRole'
+      addRole: 'roles/addRole',
+      get: 'users/get'
     }),
     modify () {
       const newUser = {
@@ -189,9 +189,26 @@ export default {
     }
 
   },
+  watch: {
+    nameFilter: function (value) {
+      this.get({ searchName: value, emailSearch: '' })
+    },
+    emailFilter: function (value) {
+      this.get({ searchName: '', emailSearch: value })
+    }
+  },
   mounted () {
     this.addRole({ name: 'Admin', user: 1, profile: 1, role: 1 })
+    this.get({ searchName: '', emailSearch: '' })
   }
+  // Esto es para formatear el rol
+  // const list = []
+  //    this.getUsers.forEach(usuario => {
+  //      const role = this.getRoles.find((role) => role.id === usuario.roleId)
+  //      usuario.roleName = role.name
+  //      list.push(usuario)
+  //    })
+  //    return list
 }
 </script>
 
