@@ -11,7 +11,7 @@ export default new Vuex.Store({
     loggedUser: null
   },
   getters: {
-    getIsLogged: (state) => state.isLogged
+    getIsLogged: (state) => state.loggedUser
   },
   mutations: {
     SET_LOGGED_USER: (state, payload) => {
@@ -19,16 +19,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async setLogIn (context, payload) {
-      context.commit('SET_LOGGED_USER', payload)
-      //  validacion de cuando se loguea bien o mal
-
-      //  devolver un objeto {message:'', error/success:boolean}
+    async setLogIn ({ context, commit, rootState }, payload) {
+      const usersState = rootState.users.users
+      const indexFound = usersState.findIndex((user) => user.password === payload.password && user.email === payload.email)
+      if (indexFound !== -1) {
+        commit('SET_LOGGED_USER', payload)
+        return { message: 'Logged in', succes: true }
+      } else {
+        return { message: 'Wrong email or password', succes: false }
+      }
     },
     async setLogOut (context) {
       context.commit('SET_LOGGED_USER', null)
-      context.commit('users/SET_USERS', [])
-      context.commit('roles/SET_ROLES', [])
+      // context.commit('users/SET_USERS', [])
+      // context.commit('roles/SET_ROLES', [])
     }
 
   },

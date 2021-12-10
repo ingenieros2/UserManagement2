@@ -4,12 +4,11 @@
       <b-card-header header-bg-variant="white">
         <h3>Login</h3>
       </b-card-header>
-      <b-body>
         <b-container>
           <form>
             <b-row class="pt-3">
-              <label for="username">Username:</label>
-              <b-input v-model="username"></b-input>
+              <label for="email">Email:</label>
+              <b-input v-model="email"></b-input>
             </b-row>
             <b-row>
               <label for="password">Password:</label>
@@ -20,36 +19,46 @@
             <b-button @click.prevent="logIn()"> Log in</b-button>
           </form>
         </b-container>
-      </b-body>
     </b-card>
     <b-modal
       title="Error while logging"
       v-model="showErrorLogging"
       ok-only>
-      <p class="my-4">Wrong ! Incorrect password</p>
+      <p class="my-4">Wrong ! Incorrect email or password</p>
     </b-modal>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Login',
   props: {},
   data () {
     return {
-      username: '',
+      email: '',
       password: '',
       showErrorLogging: false
     }
   },
+  computed: {
+    ...mapGetters({
+    })
+  },
   methods: {
-    ...mapActions([
-    ]),
+    ...mapActions({
+      setLogIn: 'setLogIn'
+    }),
     logIn () {
-      // const accountFound = Accounts.find(account => account.username === this.username && account.password === this.password);
-      // accountFound ? this.setUser(accountFound) : this.showErrorLogging = true
+      this.setLogIn({
+        email: this.email,
+        password: this.password
+      }).then((resolve) => {
+        this.showErrorLogging = !resolve.success
+      })
+      this.email = ''
+      this.password = ''
     }
   }
 }

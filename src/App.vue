@@ -1,10 +1,35 @@
 <template>
-  <div id="app">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <router-view/>
+<div>
+    <div v-if="!this.getIsLogged">
+        <Login />
+    </div>
+    <div id="app" v-if="this.getIsLogged">
+      <router-view/>
+    </div>
   </div>
 </template>
+
+<script>
+import Login from './views/Login'
+import { mapGetters } from 'vuex'
+
+export default {
+  name: 'App',
+  components: {
+    Login
+  },
+  data () {
+    return {
+      isLogged: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getIsLogged: 'getIsLogged'
+    })
+  }
+}
+</script>
 
 <style>
 
