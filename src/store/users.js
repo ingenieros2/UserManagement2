@@ -10,7 +10,7 @@ export default {
     {
       name: 'Marcos',
       email: 'marcos@gmail.com',
-      password: 'teta'
+      password: '123'
     }]
   },
   getters: {

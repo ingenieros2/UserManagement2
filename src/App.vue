@@ -3,7 +3,7 @@
     <div v-if="!this.getIsLogged">
         <Login />
     </div>
-    <div id="app" v-if="this.getIsLogged">
+    <div id="app" v-else>
       <router-view/>
     </div>
   </div>
@@ -17,11 +17,6 @@ export default {
   name: 'App',
   components: {
     Login
-  },
-  data () {
-    return {
-      isLogged: false
-    }
   },
   computed: {
     ...mapGetters({

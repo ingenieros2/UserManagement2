@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <b-card style="width: 600px;" class="cardsita">
+    <b-card class="cardsita">
       <b-card-header header-bg-variant="white">
         <h3>Login</h3>
       </b-card-header>
@@ -8,11 +8,11 @@
           <form>
             <b-row class="pt-3">
               <label for="email">Email:</label>
-              <b-input v-model="email"></b-input>
+              <b-input id="email" v-model="email"></b-input>
             </b-row>
             <b-row>
               <label for="password">Password:</label>
-              <b-input v-model="password"></b-input>
+              <b-input id="password" v-model="password"></b-input>
             </b-row>
             <br>
             <br>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Login',
@@ -42,21 +42,16 @@ export default {
       showErrorLogging: false
     }
   },
-  computed: {
-    ...mapGetters({
-    })
-  },
   methods: {
     ...mapActions({
       setLogIn: 'setLogIn'
     }),
     logIn () {
-      this.setLogIn({
-        email: this.email,
-        password: this.password
-      }).then((resolve) => {
-        this.showErrorLogging = !resolve.success
-      })
+      const call = async () => {
+        const result = await this.setLogIn({ email: this.email, password: this.password })
+        this.showErrorLogging = !result.success
+      }
+      call()
       this.email = ''
       this.password = ''
     }
@@ -74,5 +69,8 @@ export default {
   align-items: center;
   justify-items: center;
   justify-content: center;
+}
+.cardsita{
+  width: 600px
 }
 </style>

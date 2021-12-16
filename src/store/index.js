@@ -24,9 +24,9 @@ export default new Vuex.Store({
       const indexFound = usersState.findIndex((user) => user.password === payload.password && user.email === payload.email)
       if (indexFound !== -1) {
         commit('SET_LOGGED_USER', payload)
-        return { message: 'Logged in', succes: true }
+        return { message: 'Logged in', success: true }
       } else {
-        return { message: 'Wrong email or password', succes: false }
+        return { message: 'Wrong email or password', error: true }
       }
     },
     async setLogOut (context) {
