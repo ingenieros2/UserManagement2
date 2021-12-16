@@ -1,11 +1,39 @@
+
 export default {
   namespaced: true,
 
   state: {
-    users: []
+    usersFiltered: [],
+    users: [
+      {
+        id: 1,
+        name: 'Nacho',
+        lastName: 'Heinzmann',
+        phone: '3516456',
+        email: 'na',
+        roleId: 1
+      },
+      {
+        id: 2,
+        name: 'Marcos',
+        lastName: 'Heinzmann',
+        phone: '3516456',
+        email: 'ma',
+        roleId: 1
+      },
+      {
+        id: 3,
+        name: 'Mark',
+        lastName: 'Heinzmann',
+        phone: '3516456',
+        email: 'me',
+        roleId: 1
+      }
+    ]
   },
   getters: {
-    getUsers: (state) => state.users
+    getUsers: (state) => state.users,
+    getFiltered: (state) => state.usersFiltered
 
   },
   mutations: {
@@ -35,7 +63,13 @@ export default {
     },
 
     SET_USERS: (state, payload) => {
-      state.users = payload
+      const user = payload
+      state.users = user
+    },
+
+    SET_USERS_FILTERED: (state, payload) => {
+      const user = payload
+      state.usersFiltered = user
     }
 
   },
@@ -48,7 +82,19 @@ export default {
     },
     async deleteUser ({ commit, rootState }, payload) {
       commit('DELETE_USER', payload)
+    },
+    async get ({ commit }, search) {
+      const aux = this.state.users
+      if (search.searchName !== '') {
+        const filtered = Object.values(aux)[1].filter((elem) => elem.name.includes(search.searchName))
+        commit('SET_USERS_FILTERED', filtered)
+      } else if (search.mailSearch !== '') {
+        console.log(search.emailSearch)
+        const filtered = Object.values(aux)[1].filter((elem) => elem.email.includes(search.emailSearch))
+        commit('SET_USERS_FILTERED', filtered)
+      } else {
+        commit('SET_USERS', aux.users)
+      }
     }
   }
-
 }
