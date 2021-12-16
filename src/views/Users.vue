@@ -16,15 +16,15 @@
         </b-row>
         <b-row class="name-wrapper">
           <label for="name">Name</label>
-          <b-input v-model="nameFilter"></b-input>
+          <b-input id="name" v-model="nameFilter"></b-input>
         </b-row>
         <b-row class="email-wrapper">
           <label for="email">Email</label>
-          <b-input v-model="emailFilter"></b-input>
+          <b-input id="email" v-model="emailFilter"></b-input>
         </b-row>
         <b-row class="role-wrapper">
           <label for="role">Role</label>
-          <b-select :options="rolesList"></b-select>
+          <b-select id="role" :options="rolesList"></b-select>
         </b-row>
       </b-col>
       <b-col sm="9">
@@ -52,19 +52,19 @@
           <b-row>
           <b-col sm="6">
             <label for="nameNewUser">Name:</label>
-            <b-input v-model="name"></b-input>
+            <b-input id="nameNewUser" v-model="name"></b-input>
             <label for="emailNewUser">Email:</label>
-            <b-input v-model="email"></b-input>
+            <b-input id="emailNewUser" v-model="email"></b-input>
             <label for="roleNewUser">Role:</label>
-            <b-select v-model="roleId" :options="rolesList"></b-select>
+            <b-select id="roleNewUser" v-model="roleId" :options="rolesList"></b-select>
           </b-col>
           <b-col sm="6">
             <label for="lastNameNewUser">Last Name:</label>
-            <b-input v-model="lastName"></b-input>
+            <b-input id="lastNameNewUser" v-model="lastName"></b-input>
             <label for="phoneNewUser">Phone:</label>
-            <b-input v-model="phone"></b-input>
+            <b-input id="phoneNewUser" v-model="phone"></b-input>
             <label for="imageNewUser">Image:</label>
-            <b-input v-model="image"></b-input>
+            <b-input id="imageNewUser" v-model="image"></b-input>
           </b-col>
           </b-row>
         </form>
