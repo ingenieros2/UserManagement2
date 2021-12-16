@@ -2,7 +2,7 @@ export default {
   namespaced: true,
 
   state: {
-    users: [{ name: 'Gola' }]
+    users: [{ name: 'Juan' }]
   },
   getters: {
     getUser: (state) => state.users

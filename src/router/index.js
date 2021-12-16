@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Users from '../views/Users.vue'
 import Roles from '../views/Roles.vue'
-import ProfileComponent from '../views/ProfileComponent.vue'
+import Profiles from '../views/Profiles.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    component: ProfileComponent
+    component: Profiles
   }
 ]
 

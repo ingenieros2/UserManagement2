@@ -68,7 +68,7 @@
 
 <script>
 export default {
-  name: 'ProfileComponent',
+  name: 'Profiles',
   props: {
     msg: String
   }

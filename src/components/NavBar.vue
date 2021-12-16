@@ -19,17 +19,17 @@
         </b-nav>
       </b-col>
       <b-col class="">
-        <ProfileComponent></ProfileComponent>
+        <Profiles></Profiles>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import ProfileComponent from './ProfileComponent'
+import Profiles from './Profiles'
 export default {
-  components: { ProfileComponent },
-  name: 'NavBarComponent2',
+  components: { Profiles },
+  name: 'NavBar',
   props: {
     msg: String
   },

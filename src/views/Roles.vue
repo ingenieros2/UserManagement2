@@ -1,9 +1,7 @@
 <template>
   <b-container>
     <b-row class="title-module">
-      <b-col sm="1">
-
-      </b-col>
+      <b-col sm="1"></b-col>
       <b-col sm="8"></b-col>
       <b-col sm="3">
         <b-button v-b-modal.modal-2 @click="modalNewRole">Add Role</b-button>
@@ -38,22 +36,10 @@
           <br>
           <h4>Permissions</h4>
           <hr>
-          <b-row>
+          <b-row v-for="item in PermissionsLightList" :key="item.role">
             <b-col sm="12">
-              <h6>User Module</h6>
-              <PermissionLights :role="permisionUser"  @click="userpermission" />
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col required sm="12">
-              <h6>Role Module</h6>
-              <PermissionLights :role="permisionRol" @click="rolepermission"/>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col sm="12">
-              <h6>Profile Module</h6>
-              <PermissionLights :role="permisionProfile" @click="profilepermission"/>
+              <h6>{{item.name}}</h6>
+              <PermissionLights :role="item.role"  @click="item.click" />
             </b-col>
           </b-row>
         </form>
@@ -91,13 +77,11 @@ export default {
       permisionRol: null,
       permisionProfile: null,
       id: 0,
-      permisionList: ['none', 'read', 'write']
-
+      permisionList: ['none', 'read', 'write'],
+      PermissionsLightList: [{ name: 'User Module', role: this.permisionUser, click: this.userpermission }, { name: 'Role Module', role: this.permisionRol, click: this.rolepermission }, { name: 'Profile Module', role: this.permisionProfile, click: this.profilepermission }]
     }
   },
-  mounted () {
 
-  },
   computed: {
     ...mapGetters(
       {
@@ -132,8 +116,6 @@ export default {
       if (confirm('¿Seguro quieres modificar este Rol?')) {
         const rolModif = { id: this.id, name: this.name, user: this.permisionUser, profile: this.permisionProfile, role: this.permisionRol }
         this.modifyRole(rolModif)
-        this.editing = false
-      } else {
         this.editing = false
       }
     },

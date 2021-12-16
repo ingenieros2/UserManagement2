@@ -1,10 +1,9 @@
 <template>
-  <div id="app" fluid>
+<b-container id="app" fluid>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <b-container fluid>
       <b-row >
         <b-col class="bg-white pt-5" sm="3" fluid>
           <b-nav id="nav" vertical>
@@ -19,7 +18,6 @@
               </h5>
             </div>
             <div class="d-flex  flex-column bd-highlight mb-3 justify-content-between">
-
             <router-link to="/profile" class="pt-3">
               <span class="material-icons">person</span>
             Profile</router-link>
@@ -41,7 +39,6 @@
         </b-col>
       </b-row>
     </b-container>
-  </div>
 </template>
 <script>
 // @ is an alias to /src
