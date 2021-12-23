@@ -1,9 +1,9 @@
 <template>
-<div>
+<div id="app">
     <div v-if="!this.getIsLogged">
         <Login />
     </div>
-    <div id="app" v-else>
+    <div v-else>
       <router-view/>
     </div>
   </div>
