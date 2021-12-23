@@ -8,7 +8,7 @@
       </b-col>
     </b-row>
     <b-table striped hover :items="rolesData" :fields="fields">
-      <template #cell(Acciones)="data">
+      <template #cell(actions)="data">
 
         <b-row>
           <b-col cols="4"></b-col>
@@ -69,7 +69,7 @@ export default {
   data () {
     return {
       items: [{ Id: 1, Name: 'Nacho', Users: 1, Roles: 0 }],
-      fields: ['id', 'name', 'permissionUser', 'permissionRole', 'permissionProfile', 'Acciones'],
+      fields: ['id', 'name', 'permissionUser', 'permissionRole', 'permissionProfile', 'actions'],
       name: 'a',
       editing: false,
       role: '',
@@ -83,10 +83,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(
-      {
-        roles: 'roles/getRoles'
-      }),
+    ...mapGetters({ roles: 'roles/getRoles' }),
     modalTitle () {
       return this.editing ? 'Editing' : 'New Role'
     },

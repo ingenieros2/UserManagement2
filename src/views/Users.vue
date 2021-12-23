@@ -30,7 +30,7 @@
       </b-col>
       <b-col sm="9">
         <b-table striped hover :items="items" :fields="fields">
-          <template #cell(Acciones)="data">
+          <template #cell(Actions)="data">
             <b-row>
               <b-col cols="4"></b-col>
               <b-col cols="2">
@@ -89,7 +89,7 @@ export default {
   data () {
     return {
       items: [{ Id: 1, Name: 'Nacho', LastName: 'Heinzmann', Email: 'ignacio.heinzmann@gmail.com', Phone: '3516273746', RoleId: 1 }],
-      fields: ['Id', 'Name', 'LastName', 'Email', 'Phone', 'RoleId', 'Acciones'],
+      fields: ['Id', 'Name', 'LastName', 'Email', 'Phone', 'RoleId', 'Actions'],
       name: '',
       lastName: '',
       email: '',
