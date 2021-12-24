@@ -17,23 +17,12 @@
           </div>
           <div
             class="d-flex flex-column bd-highlight mb-3 justify-content-between"
+            v-for="link in listLinks" :key="link.to"
           >
-            <router-link to="/profile" class="pt-3">
-              <span class="material-icons">person</span>
-              Profile</router-link
+            <router-link to="link.to" class="pt-3">
+              <span class="material-icons">{{link.icon}}</span>
+              {{link.name}}</router-link
             >
-            <router-link to="/users" class="pt-3">
-              <span class="material-icons">people</span>
-              Users</router-link
-            >
-            <router-link to="/roles" class="pt-3">
-              <span class="material-icons">sell</span>
-              Roles
-            </router-link>
-            <router-link to="/" class="pt-5"
-              >Log Out
-              <span class="material-icons">logout</span>
-            </router-link>
           </div>
         </b-nav>
       </b-col>
@@ -51,6 +40,16 @@
 import mapGetters from 'vuex'
 export default {
   name: 'app',
+  data () {
+    return {
+      listLinks: [
+        { to: '/profile', icon: 'person', name: 'Profile' },
+        { to: '/users', icon: 'people', name: 'Users' },
+        { to: '/roles', icon: 'sell', name: 'Roles' },
+        { to: '/', icon: 'logout', name: 'Log Out' }
+      ]
+    }
+  },
   components: {},
   computed: {
     ...mapGetters({

@@ -78,7 +78,7 @@ export default {
       permisionProfile: null,
       id: 0,
       permisionList: ['none', 'read', 'write'],
-      PermissionsLightList: [{ name: 'User Module', role: this.permisionUser, click: this.userpermission }, { name: 'Role Module', role: this.permisionRol, click: this.rolepermission }, { name: 'Profile Module', role: this.permisionProfile, click: this.profilepermission }]
+      PermissionsLightList: [{ name: 'User Module', role: this.permisionUser, click: this.userPermission }, { name: 'Role Module', role: this.permisionRol, click: this.rolePermission }, { name: 'Profile Module', role: this.permisionProfile, click: this.profilePermission }]
     }
   },
 
@@ -126,7 +126,7 @@ export default {
       this.id = data.id
       this.permisionUser = data.user
       this.permisionProfile = data.profile
-      this.permisionRol = data.role
+      this.permisionRole = data.role
     },
     modalNewRole (id) {
       this.editing = false
@@ -141,7 +141,7 @@ export default {
       this.name = ''
       this.role = ''
       this.permisionUser = null
-      this.permisionRol = null
+      this.permisionRole = null
       this.permisionProfile = null
     },
     deleteRole (pay) {
@@ -149,14 +149,14 @@ export default {
         this.deleteRol(pay)
       }
     },
-    userpermission (e) {
-      this.permisionUser = e
+    userPermission (permission) {
+      this.permisionUser = permission
     },
-    rolepermission (e) {
-      this.permisionRol = e
+    rolePermission (permission) {
+      this.permisionRole = permission
     },
-    profilepermission (e) {
-      this.permisionProfile = e
+    profilePermission (permission) {
+      this.permisionProfile = permission
     }
   }
 }
